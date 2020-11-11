@@ -48,7 +48,7 @@ module.exports = {
       hash: true,
       title: 'Winter is comming',
       template: './src/index.html',
-      filename: './dist/index.html', // relative to root of the application
+      filename: './index.html', // relative to root of the application
     }),
     new MiniCssExtractPlugin({
       filename: 'main.css',
