@@ -5,7 +5,11 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "try": "webpack",
+    "server": "webpack serve --mode development --env development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,7 @@
   },
   "homepage": "https://github.com/Bismarck-GM/weather-app#readme",
   "devDependencies": {
+    "@popperjs/core": "^2.5.4",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.3",
     "css-loader": "^5.0.0",
@@ -28,8 +33,10 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "jquery": "^3.5.1",
     "mini-css-extract-plugin": "^1.2.1",
     "node-sass": "^4.14.1",
+    "popper.js": "^1.16.1",
     "sass-loader": "^10.0.4",
     "source-map-loader": "^1.1.2",
     "style-loader": "^2.0.0",
