@@ -51,7 +51,7 @@ module.exports = {
       filename: './index.html', // relative to root of the application
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.css',
+      // filename: 'main.css',
     }),
   ],
 };

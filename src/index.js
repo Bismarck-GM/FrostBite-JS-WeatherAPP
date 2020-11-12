@@ -1,6 +1,13 @@
+import './main.scss';
 const APIKEY = '49eaa4abf6e4f3d9db8f20bfed37ffca';
 
 // const WEBAPI = `api.openweathermap.org/data/2.5/weather?q=${CITYNAME}&appid=${APIKEY}`;
+
+const renderWeatherCard = (APIDATA) => {
+  const [temperatures, cityName, countryName, weather, { wind }] = [APIDATA.main, APIDATA.name, APIDATA.sys.country, APIDATA.weather[0], APIDATA];
+  console.log(temperatures, cityName, countryName, weather, wind);
+  // getToggleMeasurement();
+};
 
 const getWeather = async (CITYNAME, APIKEY) => {
   try {
@@ -9,23 +16,19 @@ const getWeather = async (CITYNAME, APIKEY) => {
     renderWeatherCard(APIDATA);
     console.log(APIDATA);
     return APIDATA;
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
   }
-}
+  return null;
+};
 
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const inputValue = document.getElementById('search-input').value;
-  getWeather(inputValue, APIKEY);
+  const inputValue = document.getElementById('search-input');
+  getWeather(inputValue.value, APIKEY);
+  inputValue.value = '';
 });
-
-const renderWeatherCard = (APIDATA) => {
-  const [temperatures, cityName, countryName, weather, wind] = [APIDATA.main, APIDATA.name, APIDATA.sys.country, APIDATA.weather[0], APIDATA.wind];
-  
-}
 
 // {coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
 // base: "stations"
