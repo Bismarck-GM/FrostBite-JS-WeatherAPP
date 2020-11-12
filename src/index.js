@@ -1,19 +1,22 @@
 import './main.scss';
+
 const APIKEY = '49eaa4abf6e4f3d9db8f20bfed37ffca';
 
-// const WEBAPI = `api.openweathermap.org/data/2.5/weather?q=${CITYNAME}&appid=${APIKEY}`;
-
-const renderWeatherCard = (APIDATA) => {
-  const [temperatures, cityName, countryName, weather, { wind }] = [APIDATA.main, APIDATA.name, APIDATA.sys.country, APIDATA.weather[0], APIDATA];
-  console.log(temperatures, cityName, countryName, weather, wind);
-  // getToggleMeasurement();
+const destructData = (APIDATA) => {
+  const [{ pressure, humidity, ...temperatures }, cityName, countryName, weather, { wind }] = [
+    APIDATA.main,
+    APIDATA.name,
+    APIDATA.sys.country,
+    APIDATA.weather[0],
+    APIDATA];
+  console.log(temperatures, pressure, humidity, cityName, countryName, weather, wind);
 };
 
 const getWeather = async (CITYNAME, APIKEY) => {
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITYNAME}&appid=${APIKEY}`);
     const APIDATA = await response.json();
-    renderWeatherCard(APIDATA);
+    destructData(APIDATA);
     console.log(APIDATA);
     return APIDATA;
   } catch (err) {
@@ -36,6 +39,14 @@ switcher.addEventListener('click', () => {
   console.log(switcher.checked);
 });
 
+function switchStatus() {
+  return document.getElementById('switch-measurement').checked;
+}
+
+function celsiusToFahrenheit(temperatures) {
+
+}
+
 function normalizeTempMetric(temperature) {
   return Math.floor(temperature / 10);
 }
@@ -43,24 +54,12 @@ function normalizeTempMetric(temperature) {
 function normalizeTemperatures(temperatureObject) {
   const response = {};
   Object.keys(temperatureObject).forEach((key) => {
-    if (key !== 'humidity' && key !== 'pressure') {
-      response[key] = normalizeTempMetric(temperatureObject[key]);
-    } else {
-      response[key] = temperatureObject[key];
-    }
+    response[key] = temperatureObject[key];
   });
   return response;
 }
 
-const temperatures = {
-  feels_like: 301.95,
-  humidity: 33,
-  pressure: 1014,
-  temp: 304.54,
-  temp_max: 305.93,
-  temp_min: 303.15,
-};
-console.log(normalizeTemperatures(temperatures));
+console.log(switchStatus());
 
 // {coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
 // base: "stations"
