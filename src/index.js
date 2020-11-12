@@ -37,32 +37,20 @@ switcher.addEventListener('click', () => {
 });
 
 function normalizeTempMetric(temperature) {
-  const answer = Math.floor(temperature / 10);
-  console.log(answer);
-  return answer;
+  return Math.floor(temperature / 10);
 }
 
 function normalizeTemperatures(temperatureObject) {
-  const response = Object.keys(temperatureObject).forEach((key) => {
-    console.log(key);
-    if (key !== 'humidity' || key !== 'pressure') {
-      temperatureObject[key] = normalizeTempMetric(temperatureObject[key]);
+  const response = {};
+  Object.keys(temperatureObject).forEach((key) => {
+    if (key !== 'humidity' && key !== 'pressure') {
+      response[key] = normalizeTempMetric(temperatureObject[key]);
+    } else {
+      response[key] = temperatureObject[key];
     }
-    console.log(response);
-    return response;
   });
   return response;
 }
-
-// const normalizedTemps = temperatureObject.keys(temperatureObject).map((key) => {
-//   if (key === 'humidity' || key === 'pressure') {
-//     true;
-//   } else {
-//     normalizeTempMetric(temperatureObject[key]);
-//   }
-//   return normalizedTemps;
-// });
-// }
 
 const temperatures = {
   feels_like: 301.95,
