@@ -30,6 +30,50 @@ form.addEventListener('submit', (event) => {
   inputValue.value = '';
 });
 
+const switcher = document.getElementById('switch-measurement');
+
+switcher.addEventListener('click', () => {
+  console.log(switcher.checked);
+});
+
+function normalizeTempMetric(temperature) {
+  const answer = Math.floor(temperature / 10);
+  console.log(answer);
+  return answer;
+}
+
+function normalizeTemperatures(temperatureObject) {
+  const response = Object.keys(temperatureObject).forEach((key) => {
+    console.log(key);
+    if (key !== 'humidity' || key !== 'pressure') {
+      temperatureObject[key] = normalizeTempMetric(temperatureObject[key]);
+    }
+    console.log(response);
+    return response;
+  });
+  return response;
+}
+
+// const normalizedTemps = temperatureObject.keys(temperatureObject).map((key) => {
+//   if (key === 'humidity' || key === 'pressure') {
+//     true;
+//   } else {
+//     normalizeTempMetric(temperatureObject[key]);
+//   }
+//   return normalizedTemps;
+// });
+// }
+
+const temperatures = {
+  feels_like: 301.95,
+  humidity: 33,
+  pressure: 1014,
+  temp: 304.54,
+  temp_max: 305.93,
+  temp_min: 303.15,
+};
+console.log(normalizeTemperatures(temperatures));
+
 // {coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
 // base: "stations"
 // clouds: {all: 10}
