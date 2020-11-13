@@ -10,6 +10,7 @@ const destructData = (APIDATA) => {
     APIDATA.weather[0],
     APIDATA];
   console.log(temperatures, pressure, humidity, cityName, countryName, weather, wind);
+  
 };
 
 const getWeather = async (CITYNAME, APIKEY) => {

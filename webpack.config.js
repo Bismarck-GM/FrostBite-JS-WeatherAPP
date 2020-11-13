@@ -37,6 +37,10 @@ module.exports = {
         },
       },
       {
+        test: /\.mp4$/,
+        use: 'file-loader?name=videos/[name].[ext]',
+      },
+      {
         test: /\.js$/,
         enforce: 'pre',
         use: ['source-map-loader'],
