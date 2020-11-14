@@ -87,6 +87,10 @@ body {
   z-index: 1;
 }
 
+#search-input {
+  z-index: 1000;
+}
+
 .weather-card .top .wrapper i {
   font-size: 5rem;
 }
@@ -114,17 +118,14 @@ body {
 .weather-card .top .wrapper .temp {
   margin-top: 20px;
 }
-.weather-card .top .wrapper .temp a {
-  text-decoration: none;
-  color: #fff;
-}
-.weather-card .top .wrapper .temp a .temp-type {
-  font-size: 85px;
+
+.weather-card .top .wrapper .temp .temp-type {
+  font-size: 5.5rem;
 }
 
 .weather-card .top .wrapper .temp .temp-value {
   display: inline-block;
-  font-size: 85px;
+  font-size: 5.5rem;
   font-weight: 600;
 
 }

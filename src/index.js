@@ -7,13 +7,14 @@ form.addEventListener('submit', (event) => {
   const inputValue = document.getElementById('search-input');
   getWeather(inputValue.value);
   inputValue.value = '';
+  document.getElementById('search-container').classList.add('d-none');
 });
 
 const switcher = document.getElementById('switch-measurement');
 
-switcher.addEventListener('click', () => {
-  console.log(switcher.checked);
-});
+// switcher.addEventListener('click', () => {
+//   console.log(switcher.checked);
+// });
 
 // {coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
 // base: "stations"

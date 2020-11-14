@@ -95,8 +95,8 @@ function normalizeApiData(APIDATA) {
   data.wind.speedText = windBeaufortToKmh(data.wind.speed);
   data.wind.directionText = toTextualDescription(data.wind.deg);
   data.weather.description = capitalizeFirstLetter(data.weather.description);
-  console.log(digestTemperatures(data.temperatures));
   console.log(data);
-};
+  return data;
+}
 
 export default normalizeApiData;
