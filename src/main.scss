@@ -89,7 +89,15 @@ body {
 
 .weather-card .top .wrapper i {
   font-size: 5rem;
+}
 
+.weather-card .top .wrapper table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.weather-card .top .wrapper table i {
+  font-size: 2rem;
 }
 
 .weather-card .top .wrapper .heading {
@@ -113,6 +121,7 @@ body {
 .weather-card .top .wrapper .temp a .temp-type {
   font-size: 85px;
 }
+
 .weather-card .top .wrapper .temp .temp-value {
   display: inline-block;
   font-size: 85px;

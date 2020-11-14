@@ -15,28 +15,6 @@ switcher.addEventListener('click', () => {
   console.log(switcher.checked);
 });
 
-function switchStatus() {
-  return document.getElementById('switch-measurement').checked;
-}
-
-function celsiusToFahrenheit(temperatures) {
-
-}
-
-function normalizeTempMetric(temperature) {
-  return Math.floor(temperature / 10);
-}
-
-function normalizeTemperatures(temperatureObject) {
-  const response = {};
-  Object.keys(temperatureObject).forEach((key) => {
-    response[key] = temperatureObject[key];
-  });
-  return response;
-}
-
-console.log(switchStatus());
-
 // {coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
 // base: "stations"
 // clouds: {all: 10}

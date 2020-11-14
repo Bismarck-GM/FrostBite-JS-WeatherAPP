@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="common/weather-icons-wind.css">
     <link rel="stylesheet" href="common/weather-icons.css">
-    <title>Heat Death</title>
+    <title>Heat-Death - Weather App</title>
   </head>
   <body class="">
 
@@ -42,17 +42,50 @@
                 <i class="wi wi-owm-200"></i>
                 <p class="temp">
                   <span class="temp-value">20</span>
-                  <span class="deg">0</span>
+                  <span class="deg">°</span>
                   <a href="javascript:;"><span class="temp-type">C</span></a>
                 </p>
-                <h4>Feels Like</h4>
-                <h5>Max. Temp</h5>
-                <h5>Min. Temp</h5>
+                <table class="table-temp">
+                  <tr>
+                    <th>Feels Like:</th>
+                    <th>Max. Temp:</th>
+                    <th>Min. Temp:</th>
+                  </tr>
+                  <tr>
+                    <td><sup>°</sup><span class="temp-type">C</span></td>
+                    <td><sup>°</sup><span class="temp-type">C</span></td>
+                    <td><sup>°</sup><span class="temp-type">C</span></td>
+                  </tr>
+                </table>
+
+                <hr>
+                <table class="table-humidity">
+                  <tr>
+                    <th></th>
+                    <th>Humidity</th>
+                    <th>Pressure</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>20%</td>
+                    <td>1000</td>
+                    <td></td>
+                  </tr>
+                </table>
                 <hr>
                 <h4>Wind</h4>
                 <i class="wi wi-wind from-360-deg"></i>
-                <h5>From: </h5>
-                <h5>Speed: </h5>
+                <table class="table-wind">
+                  <tr>
+                    <th>From</th>
+                    <th>Speed</th>
+                  </tr>
+                  <tr>
+                    <td>Northerly</td>
+                    <td>18-28 Km/h</td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
