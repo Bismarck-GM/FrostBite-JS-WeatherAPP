@@ -93,6 +93,7 @@ const createWeatherCard = (data) => {
   tempType.innerText = getTempSign();
 
   const hr = document.createElement('hr');
+  const hr2 = document.createElement('hr');
 
   const row = document.getElementById('main-container');
   const col = createEl('div', 'col-12 col-md-6 col-lg-4');
@@ -186,7 +187,7 @@ const createWeatherCard = (data) => {
     tableTemp,
     hr,
     tableHumidity,
-    hr,
+    hr2,
     windTitle,
     windIcon,
     tableWind,

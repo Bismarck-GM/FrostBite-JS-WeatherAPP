@@ -1,13 +1,33 @@
 import './main.scss';
 import getWeather from './modules/api';
 
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd() {
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, { once: true });
+  });
+
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const inputValue = document.getElementById('search-input');
-  getWeather(inputValue.value);
-  inputValue.value = '';
-  document.getElementById('search-container').classList.add('d-none');
+  animateCSS('search-container', 'fadeOut')
+    .then(() => {
+      event.preventDefault();
+      const inputValue = document.getElementById('search-input');
+      getWeather(inputValue.value);
+      inputValue.value = '';
+      document.getElementById('search-container').classList.add('d-none');
+    });
 });
 
 const switcher = document.getElementById('switch-measurement');
