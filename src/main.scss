@@ -5,6 +5,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
+  font-size: 16px;
 }
 
 // .switch {
@@ -84,21 +85,7 @@ body {
   position: relative;
   z-index: 1;
 }
-.weather-card .top .wrapper .mynav {
-  height: 20px;
-}
-.weather-card .top .wrapper .mynav .lnr {
-  color: #fff;
-  font-size: 20px;
-}
-.weather-card .top .wrapper .mynav .lnr-chevron-left {
-  display: inline-block;
-  float: left;
-}
-.weather-card .top .wrapper .mynav .lnr-cog {
-  display: inline-block;
-  float: right;
-}
+
 .weather-card .top .wrapper .heading {
   margin-top: 20px;
   font-size: 35px;
