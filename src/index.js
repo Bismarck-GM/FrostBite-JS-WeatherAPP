@@ -1,16 +1,6 @@
 import './main.scss';
 import getWeather from './modules/api';
 
-const destructData = (APIDATA) => {
-  const [{ pressure, humidity, ...temperatures }, cityName, countryName, weather, { wind }] = [
-    APIDATA.main,
-    APIDATA.name,
-    APIDATA.sys.country,
-    APIDATA.weather[0],
-    APIDATA];
-  console.log(temperatures, pressure, humidity, cityName, countryName, weather, wind);
-};
-
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
