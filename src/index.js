@@ -1,6 +1,5 @@
 import './main.scss';
-
-const APIKEY = '49eaa4abf6e4f3d9db8f20bfed37ffca';
+import getWeather from './modules/api';
 
 const destructData = (APIDATA) => {
   const [{ pressure, humidity, ...temperatures }, cityName, countryName, weather, { wind }] = [
@@ -10,27 +9,13 @@ const destructData = (APIDATA) => {
     APIDATA.weather[0],
     APIDATA];
   console.log(temperatures, pressure, humidity, cityName, countryName, weather, wind);
-  
-};
-
-const getWeather = async (CITYNAME, APIKEY) => {
-  try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITYNAME}&appid=${APIKEY}`);
-    const APIDATA = await response.json();
-    destructData(APIDATA);
-    console.log(APIDATA);
-    return APIDATA;
-  } catch (err) {
-    console.log(err);
-  }
-  return null;
 };
 
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const inputValue = document.getElementById('search-input');
-  getWeather(inputValue.value, APIKEY);
+  getWeather(inputValue.value);
   inputValue.value = '';
 });
 
