@@ -7,71 +7,71 @@ body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
   font-size: 16px;
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,0.01) 0%, rgba(0,202,255,1) 35%, rgba(0,202,255,0.6054796918767507) 100%);
 
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,0.01) 0%, rgba(0,202,255,1) 40%, rgba(0,202,255,0.6054796918767507) 100%);
 }
 
-// .switch {
-//   position: relative;
-//   display: inline-block;
-//   width: 60px;
-//   height: 34px;
-// }
+/* CHECKBOX */
 
-// /* Hide default HTML checkbox */
-// .switch input {
-//   opacity: 0;
-//   width: 0;
-//   height: 0;
-// }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
-// /* The slider */
-// .slider {
-//   position: absolute;
-//   cursor: pointer;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background-color: #ccc;
-//   -webkit-transition: .4s;
-//   transition: .4s;
-// }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-// .slider:before {
-//   position: absolute;
-//   content: "";
-//   height: 26px;
-//   width: 26px;
-//   left: 4px;
-//   bottom: 4px;
-//   background-color: white;
-//   -webkit-transition: .4s;
-//   transition: .4s;
-// }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-// input:checked + .slider {
-//   background-color: #2196F3;
-// }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-// input:focus + .slider {
-//   box-shadow: 0 0 1px #2196F3;
-// }
+input:checked + .slider {
+  background-color: #2196F3;
+}
 
-// input:checked + .slider:before {
-//   -webkit-transform: translateX(26px);
-//   -ms-transform: translateX(26px);
-//   transform: translateX(26px);
-// }
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
 
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
 
+/* SEARCH-BAR */
+
+#search-input {
+  z-index: 1000;
+}
+
+/* WEATHER CARD */
 
 .weather-card {
-  // margin: 60px auto;
-  // width: 450px;
   background: #fff;
   box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -91,10 +91,6 @@ body {
   padding: 2rem;
   position: relative;
   z-index: 1;
-}
-
-#search-input {
-  z-index: 1000;
 }
 
 .weather-card .top .wrapper i {
@@ -157,6 +153,8 @@ body {
   background-size: cover;
   background-position: center center;
 }
+
+/* LOADING-EFFECT */
 
 .lds-ripple {
   display: inline-block;

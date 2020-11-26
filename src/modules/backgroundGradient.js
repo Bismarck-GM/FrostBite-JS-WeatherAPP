@@ -1,11 +1,8 @@
 // http://suncalc.net/
-
 // gradient colors from https://cdpn.io/rDEAl
-// getHours function by script link to CDN
-const { getHours } = dateFns;
-const { format } = dateFns;
-// with NPM
-import getHours from 'date-fns/get_hours';
+
+import getHours from 'date-fns/getHours';
+
 let d = getHours(new Date());
 let inx = -1;
 
@@ -36,7 +33,7 @@ const grads = [
   [{ color: '00000c', position: 80 }, { color: '150800', position: 100 }],
 ];
 
-function toCSSGradient(data) {
+const toCSSGradient = (data) => {
   let css = 'linear-gradient(to bottom, ';
   const len = data.length;
 
@@ -46,38 +43,33 @@ function toCSSGradient(data) {
     if (i < len - 1) css += ',';
   }
   return `${css})`;
-}
+};
 
-function updateTime() {
+const updateTime = () => {
   d = getHours(new Date());
   return d;
-}
+};
 
-function setCSSGradientByIndex(nInx) {
+const setCSSGradientByIndex = (nInx) => {
   if (nInx !== inx) {
     inx = nInx;
     const data = grads[inx];
     if (data == null) return;
-
     // convert data to gradient
     const css = toCSSGradient(data);
-
     // update the background
     const mainBody = document.querySelector('#main-body');
     mainBody.style.backgroundImage = `${css}`;
     mainBody.style.backgroundImage = `-webkit-${css}`;
     mainBody.style.backgroundImage = `-moz-${css}`;
   }
-
-  // always set time
   d = getHours(new Date());
-}
+};
 
-function updateBasedOnNow() {
+const updateBasedOnNow = () => {
   setCSSGradientByIndex(updateTime());
-}
+};
 
-// props
 const h = updateTime();
 
 setCSSGradientByIndex(h);

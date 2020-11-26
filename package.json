@@ -22,13 +22,15 @@
     "url": "https://github.com/Bismarck-GM/weather-app/issues"
   },
   "homepage": "https://github.com/Bismarck-GM/weather-app#readme",
+  "dependencies": {
+    "date-fns": "^2.16.1"
+  },
   "devDependencies": {
     "@popperjs/core": "^2.5.4",
     "animate.css": "^4.1.1",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.3",
     "css-loader": "^5.0.0",
-    "date-fns": "^2.16.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
