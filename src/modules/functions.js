@@ -1,6 +1,6 @@
 import getCountryName from './isoCountries';
 
-function windBeaufortToKmh(windSpeed) {
+const windBeaufortToKmh = (windSpeed) => {
   // return (Math.round(0.836 * Math.sqrt(windSpeed ** 3) * 100) / 100) * 3.6; Beaufort to MS to KMH
   const speedRange = [
     '< 1 Km/h',
@@ -18,13 +18,13 @@ function windBeaufortToKmh(windSpeed) {
     '>= 118 Km/h',
   ];
   return speedRange[Math.round(windSpeed)];
-}
+};
 
-function capitalizeFirstLetter(string) {
+const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
-function toTextualDescription(degree) {
+const toTextualDescription = (degree) => {
   const sectors = [
     'Northerly',
     'North Easterly',
@@ -43,21 +43,18 @@ function toTextualDescription(degree) {
   }
   const which = parseInt(degree / 45, 10);
   return sectors[which];
-}
+};
 
-function switchStatus() {
+const switchStatus = () => {
   return document.getElementById('switch-measurement').checked;
-}
+};
 
-function normalizeTempMetric(temperature) {
-  return Math.floor(temperature / 10);
-}
+const normalizeTempMetric = (temperature) => Math.floor(temperature / 10);
 
-function normalizeTempFahrenheit(temperatures) {
-  return (normalizeTempMetric(temperatures) * (9 / 5) + 32);
-}
+const normalizeTempFahrenheit = (temperatures) => (
+  normalizeTempMetric(temperatures) * (9 / 5) + 32);
 
-function digestTemperatures(temperatureObject) {
+const digestTemperatures = (temperatureObject) => {
   const response = {};
   Object.keys(temperatureObject).forEach((key) => {
     if (switchStatus()) {
@@ -67,7 +64,7 @@ function digestTemperatures(temperatureObject) {
     }
   });
   return response;
-}
+};
 
 const destructData = (APIDATA) => {
   const [{ pressure, humidity, ...temperatures }, cityName, countryCode, weather, { wind }] = [
@@ -88,7 +85,7 @@ const destructData = (APIDATA) => {
   return digestedData;
 };
 
-function normalizeApiData(APIDATA) {
+const normalizeApiData = (APIDATA) => {
   const data = destructData(APIDATA);
   data.temperatures = digestTemperatures(data.temperatures);
   data.countryName = getCountryName(data.countryCode);
@@ -97,6 +94,6 @@ function normalizeApiData(APIDATA) {
   data.weather.description = capitalizeFirstLetter(data.weather.description);
   console.log(data);
   return data;
-}
+};
 
 export default normalizeApiData;

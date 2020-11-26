@@ -196,6 +196,7 @@ const createWeatherCard = (data) => {
   wcTop.appendChild(wrapper);
   weatherCard.appendChild(wcTop);
   col.appendChild(weatherCard);
+  col.classList.add('animate__animated', 'animate__fadeIn');
   row.appendChild(col);
 };
 
