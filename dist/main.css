@@ -11398,7 +11398,7 @@ input:checked + .slider:before {
   filter: blur(2px); }
 
 #city-BNG-front {
-  animation: pop-up 4.5s ease-in forwards;
+  animation: pop-up 4s ease-in forwards;
   max-height: 25vh;
   z-index: 100; }
 

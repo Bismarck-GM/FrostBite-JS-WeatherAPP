@@ -70,6 +70,7 @@ const toggleSearchBar = () => {
   } else {
     searchBar.classList.remove('animate__fadeOut');
     searchBar.classList.add('animate__zoomIn');
+    searchBar.focus();
   }
 };
 

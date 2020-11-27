@@ -3,8 +3,25 @@
 
 import getHours from 'date-fns/getHours';
 
+console.log(new Date());
 let d = getHours(new Date());
 let inx = -1;
+
+const updateTime = () => {
+  d = getHours(new Date());
+  return d;
+};
+
+const momentOfDayImages = (hour) => {
+  if (hour >= 22 && hour <= 5) {
+    hour = 'night';
+  } else if (hour >= 10 && hour <= 17) {
+    hour = 'day';
+  } else {
+    hour = 'ds';
+  }
+  return hour;
+};
 
 const grads = [
   [{ color: '00000c', position: 0 }, { color: '00000c', position: 0 }],
@@ -45,11 +62,6 @@ const toCSSGradient = (data) => {
   return `${css})`;
 };
 
-const updateTime = () => {
-  d = getHours(new Date());
-  return d;
-};
-
 const setCSSGradientByIndex = (nInx) => {
   if (nInx !== inx) {
     inx = nInx;
@@ -66,7 +78,7 @@ const setCSSGradientByIndex = (nInx) => {
   d = getHours(new Date());
 };
 
-const updateBasedOnNow = () => {
+const updateBackgroundsBasedOnNow = () => {
   setCSSGradientByIndex(updateTime());
 };
 
@@ -74,6 +86,6 @@ const h = updateTime();
 
 setCSSGradientByIndex(h);
 
-setInterval(() => { updateBasedOnNow(); }, 60 * 1000);
+setInterval(() => { updateBackgroundsBasedOnNow(); }, 60 * 1000);
 
-export { setCSSGradientByIndex, updateTime };
+export default updateBackgroundsBasedOnNow;

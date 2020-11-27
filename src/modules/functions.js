@@ -92,9 +92,4 @@ const normalizeApiData = (APIDATA) => {
   return data;
 };
 
-const fetchCityName = () => {
-  const cityName = JSON.parse(localStorage.getItem('cityName') || 'New York');
-  return cityName;
-};
-
-export { normalizeApiData, fetchCityName };
+export { normalizeApiData };
