@@ -62,6 +62,26 @@
 // temperatures: {temp: 84.2, feels_like: 84.2, temp_min: 84.2, temp_max: 84.2, sea_level: 213.8, …}
 // weather: {id: 500, main: "Rain", description: "Light rain", icon: "10d"}
 // wind: {speed: 3.9, deg: 150, speedText: "20-28 Km/h", directionText: "South Easterly"}
+const toggleSearchBar = () => {
+  const searchBar = document.getElementById('search-container');
+  if (searchBar.classList.contains('animate__zoomIn')) {
+    searchBar.classList.remove('animate__zoomIn');
+    searchBar.classList.add('animate__fadeOut');
+  } else {
+    searchBar.classList.remove('animate__fadeOut');
+    searchBar.classList.add('animate__zoomIn');
+  }
+};
+
+const toggleLoadingAnimation = () => {
+  const loadingAn = document.getElementById('loading-animation');
+  loadingAn.classList.toggle('d-none');
+};
+
+const displayErrorSearchBar = () => {
+  const errorBox = document.querySelector('.invalid-feedback');
+  errorBox.classList.add('d-block');
+};
 
 function createEl(type, cl = '') {
   const el = document.createElement(type);
@@ -200,4 +220,4 @@ const createWeatherCard = (data) => {
   row.appendChild(col);
 };
 
-export default createWeatherCard;
+export { createWeatherCard, toggleSearchBar, toggleLoadingAnimation, displayErrorSearchBar };

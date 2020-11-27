@@ -75,3 +75,5 @@ const h = updateTime();
 setCSSGradientByIndex(h);
 
 setInterval(() => { updateBasedOnNow(); }, 60 * 1000);
+
+export { setCSSGradientByIndex, updateTime };

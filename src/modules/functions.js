@@ -20,9 +20,7 @@ const windBeaufortToKmh = (windSpeed) => {
   return speedRange[Math.round(windSpeed)];
 };
 
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 const toTextualDescription = (degree) => {
   const sectors = [
@@ -45,9 +43,7 @@ const toTextualDescription = (degree) => {
   return sectors[which];
 };
 
-const switchStatus = () => {
-  return document.getElementById('switch-measurement').checked;
-};
+const switchStatus = () => document.getElementById('switch-measurement').checked;
 
 const normalizeTempMetric = (temperature) => Math.floor(temperature / 10);
 
@@ -96,4 +92,9 @@ const normalizeApiData = (APIDATA) => {
   return data;
 };
 
-export default normalizeApiData;
+const fetchCityName = () => {
+  const cityName = JSON.parse(localStorage.getItem('cityName') || 'New York');
+  return cityName;
+};
+
+export { normalizeApiData, fetchCityName };

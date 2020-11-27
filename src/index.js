@@ -1,14 +1,19 @@
 import './main.scss';
 import getWeather from './modules/api';
+import { setCSSGradientByIndex, updateTime } from './modules/backgroundGradient';
+import { toggleSearchBar, toggleLoadingAnimation } from './modules/dom';
 
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
-  // animateCSS('search-container', 'fadeOut');
   event.preventDefault();
+  toggleSearchBar();
+  toggleLoadingAnimation();
   const inputValue = document.getElementById('search-input');
+  localStorage.setItem('cityName', JSON.stringify(inputValue.value));
   getWeather(inputValue.value);
   inputValue.value = '';
-  document.getElementById('search-container').classList.add('d-none');
 });
 
 const switcher = document.getElementById('switch-measurement');
+
+setCSSGradientByIndex(updateTime());
