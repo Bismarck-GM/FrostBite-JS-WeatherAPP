@@ -1,4 +1,6 @@
-import getCountryName from './isoCountries';
+import { getCountryName, getCountryCode } from './isoCountries';
+
+const APIKEY = '49eaa4abf6e4f3d9db8f20bfed37ffca';
 
 const windBeaufortToKmh = (windSpeed) => {
   // return (Math.round(0.836 * Math.sqrt(windSpeed ** 3) * 100) / 100) * 3.6; Beaufort to MS to KMH
@@ -21,6 +23,33 @@ const windBeaufortToKmh = (windSpeed) => {
 };
 
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+const splitCityCountryString = (string) => {
+  const [cityName, countryName] = [string.split(',')[0].trim(), string.split(',')[1].trim()];
+  return [cityName, countryName];
+};
+
+const capitalizeFirstLetterAllWords = (string) => {
+  const splitStr = string.toLowerCase().split(' ');
+  for (let i = 0; i < splitStr.length; i += 1) {
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(' ');
+};
+
+const processInputStringToApiCall = (inputString) => {
+  let APICALL = '';
+  if (inputString.indexOf(',') !== -1) {
+    const strArr = splitCityCountryString(inputString);
+    strArr[1] = getCountryCode(capitalizeFirstLetterAllWords(strArr[1]));
+    APICALL = `https://api.openweathermap.org/data/2.5/weather?q=${strArr[0]},${strArr[1]}&appid=${APIKEY}`;
+  }
+  if (inputString.indexOf(',') === -1) {
+    APICALL = `https://api.openweathermap.org/data/2.5/weather?q=${inputString}&appid=${APIKEY}`;
+  }
+  console.log(APICALL);
+  return APICALL;
+};
 
 const toTextualDescription = (degree) => {
   const sectors = [
@@ -92,4 +121,4 @@ const normalizeApiData = (APIDATA) => {
   return data;
 };
 
-export { normalizeApiData };
+export { normalizeApiData, processInputStringToApiCall };

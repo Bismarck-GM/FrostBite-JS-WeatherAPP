@@ -246,11 +246,16 @@ const isoCountries = {
   ZW: 'Zimbabwe',
 };
 
-function getCountryName(countryCode) {
+const getCountryName = (countryCode) => {
   if (Object.prototype.hasOwnProperty.call(isoCountries, countryCode)) {
     return isoCountries[countryCode];
   }
   return countryCode;
-}
+};
 
-export default getCountryName;
+const getCountryCode = (countryName) => {
+  console.log(countryName);
+  return Object.keys(isoCountries).find(key => isoCountries[key] === countryName);
+};
+
+export { getCountryName, getCountryCode };

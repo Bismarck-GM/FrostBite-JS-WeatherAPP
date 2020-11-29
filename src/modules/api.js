@@ -1,4 +1,4 @@
-import normalizeApiData from './functions';
+import { normalizeApiData, processInputStringToApiCall } from './functions';
 import {
   createWeatherCard,
   toggleSearchBar,
@@ -18,20 +18,18 @@ const digestAPIDATA = async (APIDATA) => {
   return null;
 };
 
-const getWeather = async (CITYNAME) => {
+const getWeather = async (inputString) => {
+  const APICALL = processInputStringToApiCall(inputString);
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${CITYNAME}&appid=49eaa4abf6e4f3d9db8f20bfed37ffca`,
-    );
-    console.log(response);
+    const response = await fetch(APICALL);
     if (response.status !== 200) {
       toggleLoadingAnimation();
       toggleSearchBar();
       displayErrorSearchBar();
     } else {
       const APIDATA = await response.json();
+      digestAPIDATA(APIDATA);
     }
-    return APIDATA;
   } catch (err) {
     console.log(err);
   }

@@ -3,23 +3,25 @@
 
 import getHours from 'date-fns/getHours';
 
+const momentOfDay = (hour) => {
+  let momentOfDay = '';
+  if (hour >= 22 && hour <= 5) {
+    momentOfDay = 'night';
+  } else if (hour >= 10 && hour <= 17) {
+    momentOfDay = 'day';
+  } else {
+    momentOfDay = 'ds';
+  }
+  return momentOfDay;
+};
+
 console.log(new Date());
-let d = getHours(new Date());
+let hour = getHours(new Date());
+let timeOfDay = momentOfDay(hour);
 let inx = -1;
 
 const updateTime = () => {
-  d = getHours(new Date());
-  return d;
-};
-
-const momentOfDayImages = (hour) => {
-  if (hour >= 22 && hour <= 5) {
-    hour = 'night';
-  } else if (hour >= 10 && hour <= 17) {
-    hour = 'day';
-  } else {
-    hour = 'ds';
-  }
+  hour = getHours(new Date());
   return hour;
 };
 
@@ -75,15 +77,16 @@ const setCSSGradientByIndex = (nInx) => {
     mainBody.style.backgroundImage = `-webkit-${css}`;
     mainBody.style.backgroundImage = `-moz-${css}`;
   }
-  d = getHours(new Date());
+  hour = getHours(new Date());
 };
 
 const updateBackgroundsBasedOnNow = () => {
   setCSSGradientByIndex(updateTime());
 };
 
-const h = updateTime();
+// First run to load background.
 
+const h = updateTime();
 setCSSGradientByIndex(h);
 
 setInterval(() => { updateBackgroundsBasedOnNow(); }, 60 * 1000);

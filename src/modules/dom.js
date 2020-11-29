@@ -66,7 +66,7 @@ const toggleSearchBar = () => {
   const searchBar = document.getElementById('search-container');
   if (searchBar.classList.contains('animate__zoomIn')) {
     searchBar.classList.remove('animate__zoomIn');
-    searchBar.classList.add('animate__fadeOut');
+    searchBar.classList.add('fadeOut');
   } else {
     searchBar.classList.remove('animate__fadeOut');
     searchBar.classList.add('animate__zoomIn');
@@ -117,6 +117,7 @@ const createWeatherCard = (data) => {
   const hr2 = document.createElement('hr');
 
   const row = document.getElementById('main-container');
+  row.innerHTML = '';
   const col = createEl('div', 'col-12 col-md-6 col-lg-4');
   const weatherCard = createEl('div', 'weather-card');
   const wcTop = createEl('div', 'top');
@@ -221,4 +222,9 @@ const createWeatherCard = (data) => {
   row.appendChild(col);
 };
 
-export { createWeatherCard, toggleSearchBar, toggleLoadingAnimation, displayErrorSearchBar };
+export {
+  createWeatherCard,
+  toggleSearchBar,
+  toggleLoadingAnimation,
+  displayErrorSearchBar,
+};

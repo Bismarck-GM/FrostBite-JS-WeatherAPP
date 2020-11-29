@@ -8,25 +8,82 @@
     <link rel="stylesheet" href="common/weather-icons-wind.css">
     <link rel="stylesheet" href="common/weather-icons.css">
     <title>Heat-Death - Weather App</title>
-  <link href="main.css?9816dabc40436abfb6aa" rel="stylesheet"></head>
+  <link href="main.css?b853ac76bb72855f8c7e" rel="stylesheet"></head>
   <body id="main-body">
 
     <div id="main-container" class="row h-100 w-100 align-items-center justify-content-center m-0 position-absolute">
-      <div id="loading-animation" class="lds-ripple d-none"><div></div><div></div></div>
-      <div id="search-container" class="col-6 animate__animated animate__zoomIn">
+      <div id="loading-animation" class="lds-ripple d-none">
+        <div></div>
+        <div></div>
+      </div>
+      <!-- <div id="search-container" class="col-6 animate__animated animate__zoomIn">
         <form id="form" class="">
           <div class="form-group">
             <div class="input-group mb-3">
-              <input id="search-input" class="form-control form-control-lg" type="text" placeholder="Search weather. Eg., 'Buenos Aires, Argentina'">
+              <input id="search-input" class="form-control form-control-lg" type="text" placeholder="Eg: 'City, CountryName'">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary btn-info" type="submit">Submit</button>
               </div>
               <div class="invalid-feedback">
-                Please provide a valid city. The input should be 'City Name, Country'.
+                Please provide a valid city. The input should be 'City Name, Country' or only 'City Name'.
               </div>
             </div>
           </div>
         </form>
+      </div> -->
+      <div class="card weather-card-container text-center col-10 col-md-6 col-lg-4">
+        <div class="card-body">
+          <h1 class="card-title">Clear night</h1>
+          <h4 class="card-subtitle mb-2 text-muted">Card subtitle</h4>
+          <h1 class="card-title"><i class="wi wi-owm-200"></i></h1>
+          <h1 class="temp">
+            <span class="temp-value">20</span>
+            <span class="deg">°</span>
+            <span class="temp-type">C</span>
+          </h1>
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <tr>
+                <th>Feels Like:</th>
+                <th>Max. Temp:</th>
+                <th>Min. Temp:</th>
+              </tr>
+              <tr>
+                <td><sup>°</sup><span class="temp-type">C</span></td>
+                <td><sup>°</sup><span class="temp-type">C</span></td>
+                <td><sup>°</sup><span class="temp-type">C</span></td>
+              </tr>
+            </table>
+          </div>
+          <hr>
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <tr>
+                <th>From</th>
+                <th>Direction</th>
+                <th>Speed</th>
+              </tr>
+            <tr>
+              <td>Northerly</td>
+              <td><i class="wi wi-wind from-360-deg"></i></td>
+              <td>18-28 Km/h</td>
+            </tr>
+            </table>
+          </div>
+          <hr>
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <tr>
+                <th>Humidity</th>
+                <th>Pressure</th>
+              </tr>
+              <tr>
+                <td>20%</td>
+                <td>1000</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <label class="switch">
@@ -34,8 +91,12 @@
       <span class="slider round"></span>
     </label>
     <div id="footer-container">
-      <img src="./common/images/City-Back-Night.png" alt="Illustration-city-background" id="city-BNG-back">
-      <img src="./common/images/City-Front-Night.png" alt="Illustration-city-front" id="city-BNG-front">
+      <div class="city-BNG-back-container">
+        <img src="./common/images/City-Back-Night.png" alt="Illustration-city-background" id="city-BNG-back">
+      </div>
+      <div class="city-BNG-front-container">
+        <img src="./common/images/City-Front-Night.png" alt="Illustration-city-front" id="city-BNG-front">
+      </div>
     </div>
-  <script src="main.js?9816dabc40436abfb6aa"></script></body>
+  <script src="main.js?b853ac76bb72855f8c7e"></script></body>
 </html>
