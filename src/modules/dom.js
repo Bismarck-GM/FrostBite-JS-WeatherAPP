@@ -1,74 +1,12 @@
-/* <div class="row h-100 w-100 align-items-center justify-content-center m-0 position-absolute">
-<div class="col-12 col-md-6 col-lg-4">
-  <div class="weather-card one">
-    <div class="top">
-      <div class="wrapper">
-        <h1 class="heading">Clear night</h1>
-        <h3 class="location">Dhaka, Bangladesh</h3>
-        <i class="wi wi-owm-200"></i>
-        <p class="temp">
-          <span class="temp-value">20</span>
-          <span class="deg">°</span>
-          <span class="temp-type">C</span>
-        </p>
-        <table class="table-temp">
-          <tr>
-            <th>Feels Like:</th>
-            <th>Max. Temp:</th>
-            <th>Min. Temp:</th>
-          </tr>
-          <tr>
-            <td><sup>°</sup><span class="temp-type">C</span></td>
-            <td><sup>°</sup><span class="temp-type">C</span></td>
-            <td><sup>°</sup><span class="temp-type">C</span></td>
-          </tr>
-        </table>
-
-        <hr>
-        <table class="table-humidity">
-          <tr>
-            <th>Humidity</th>
-            <th>Pressure</th>
-          </tr>
-          <tr>
-            <td>20%</td>
-            <td>1000</td>
-          </tr>
-        </table>
-        <hr>
-        <h4>Wind</h4>
-        <i class="wi wi-wind from-360-deg"></i>
-        <table class="table-wind">
-          <tr>
-            <th>From</th>
-            <th>Speed</th>
-          </tr>
-          <tr>
-            <td>Northerly</td>
-            <td>18-28 Km/h</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-</div> */
-
-// cityName: "Santa Fe"
-// countryCode: "AR"
-// countryName: "Argentina"
-// humidity: 63
-// pressure: 1010
-// temperatures: {temp: 84.2, feels_like: 84.2, temp_min: 84.2, temp_max: 84.2, sea_level: 213.8, …}
-// weather: {id: 500, main: "Rain", description: "Light rain", icon: "10d"}
-// wind: {speed: 3.9, deg: 150, speedText: "20-28 Km/h", directionText: "South Easterly"}
 const toggleSearchBar = () => {
   const searchBar = document.getElementById('search-container');
   if (searchBar.classList.contains('animate__zoomIn')) {
     searchBar.classList.remove('animate__zoomIn');
-    searchBar.classList.add('fadeOut');
+    searchBar.style.setProperty('--animate-duration', '.5s');
+    searchBar.classList.add('animate__fadeOut');
   } else {
     searchBar.classList.remove('animate__fadeOut');
+    searchBar.style.setProperty('--animate-duration', '1s');
     searchBar.classList.add('animate__zoomIn');
     searchBar.focus();
   }
@@ -117,13 +55,14 @@ const createWeatherCard = (data) => {
   const hr2 = document.createElement('hr');
 
   const row = document.getElementById('main-container');
-  row.innerHTML = '';
+  const searchBar = document.getElementById('search-container');
+  searchBar.classList.add('d-none');
   const weatherCardContainer = createEl('div', 'card weather-card-container text-center col-10 col-md-6 col-lg-4');
   const weatherCard = createEl('div', 'card-body');
   const heading = createEl('h1', 'card-title');
   heading.innerText = `${data.weather.description}`;
 
-  const location = createEl('h3', 'card-subtitle mb-2 text-muted');
+  const location = createEl('h3', 'card-subtitle mb-2');
   location.innerText = `${data.cityName}, ${data.countryName}`;
 
   const mainIconContainer = createEl('h1', 'card-title');
@@ -230,8 +169,11 @@ const createWeatherCard = (data) => {
   );
 
   weatherCardContainer.appendChild(weatherCard);
-  weatherCardContainer.classList.add('animate__animated', 'animate__fadeIn');
   row.appendChild(weatherCardContainer);
+  weatherCardContainer.classList.add('animate__animated', 'animate__fadeIn');
+  tableHumidityContainer.classList.add('animate__animated', 'animate__fadeInUp');
+  tableWindContainer.classList.add('animate__animated', 'animate__fadeInRight');
+  tableTempContainer.classList.add('animate__animated', 'animate__fadeInLeft');
 };
 
 const displaySearchBar = () => {
@@ -269,9 +211,20 @@ const displaySearchBar = () => {
   mainContainer.append(searchContainer);
 };
 
+const checkSearchBar = () => {
+  const searchBar = document.getElementById('search-container');
+  const weatherCardContainer = document.querySelector('.weather-card-container');
+  if (searchBar.classList.contains('d-none')) {
+    toggleSearchBar();
+    searchBar.classList.remove('d-none');
+    weatherCardContainer.remove();
+  }
+};
+
 export {
   createWeatherCard,
   toggleSearchBar,
   toggleLoadingAnimation,
   displayErrorSearchBar,
+  checkSearchBar,
 };

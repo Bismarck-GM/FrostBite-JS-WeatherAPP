@@ -74,10 +74,10 @@ const toTextualDescription = (degree) => {
 
 const switchStatus = () => document.getElementById('switch-measurement').checked;
 
-const normalizeTempMetric = (temperature) => Math.floor(temperature / 10);
+const normalizeTempMetric = (temperature) => (temperature / 10).toFixed(1);
 
 const normalizeTempFahrenheit = (temperatures) => (
-  normalizeTempMetric(temperatures) * (9 / 5) + 32);
+  (normalizeTempMetric(temperatures) * (9 / 5) + 32)).toFixed(1);
 
 const digestTemperatures = (temperatureObject) => {
   const response = {};
