@@ -11252,7 +11252,7 @@ body {
   z-index: 99999; }
 
 .main-title {
-  width: 10rem; }
+  width: 15rem; }
 
 .search-icon {
   max-width: 2rem;
@@ -11272,7 +11272,7 @@ body {
   will change the size of the switch.
   See .rocker-small below as example.
   */
-  font-size: 0.8em;
+  font-size: 0.6em;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -11378,6 +11378,8 @@ input:checked + .switch-left + .switch-right::before {
   border-radius: 50px;
   font-size: 1rem;
   color: #fff; }
+  .weather-card-container h3 {
+    color: #79b0e4; }
 
 .table {
   table-layout: fixed;
@@ -11495,8 +11497,14 @@ input:checked + .switch-left + .switch-right::before {
     padding-top: 2vh; }
   .main-title {
     width: 16rem; }
+  .rocker {
+    font-size: 0.8em; }
   .west {
     left: 20%; }
   .east {
     right: 20%; } }
+
+@media (min-width: 1921px) {
+  html {
+    font-size: 20px; } }
 
