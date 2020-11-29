@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900);
-@import url(https://cdn.linearicons.com/free/1.0.0/icon-font.min.css);
 @charset "UTF-8";/*!
  * animate.css - https://animate.style/
  * Version - 4.1.1
@@ -11245,50 +11244,127 @@ body {
   padding-top: 15vh;
   padding-bottom: 30vh; }
 
-/* CHECKBOX */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px; }
+/* TOP CONTROLS - CHECKBOX - TITLE */
+.controls {
+  top: 0;
+  padding: 5vh 2vw 0 2vw;
+  max-height: 15vh;
+  z-index: 99999; }
 
-.switch input {
+.main-title {
+  width: 10rem; }
+
+.search-icon {
+  max-width: 2rem;
+  cursor: pointer; }
+
+.input-container {
+  max-height: 3rem; }
+
+.rocker {
+  display: inline-block;
+  position: relative;
+  /*
+  SIZE OF SWITCH
+  ==============
+  All sizes are in em - therefore
+  changing the font-size here
+  will change the size of the switch.
+  See .rocker-small below as example.
+  */
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #888;
+  width: 7em;
+  height: 4em;
+  overflow: hidden;
+  border-bottom: 0.5em solid #B78544; }
+
+.rocker::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #999;
+  border: 0.5em solid #B78544;
+  border-bottom: 0; }
+
+.rocker input {
   opacity: 0;
   width: 0;
   height: 0; }
 
-.slider {
-  position: absolute;
+.switch-left,
+.switch-right {
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s; }
-
-.slider:before {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 3em;
+  transition: 0.2s; }
+
+.switch-left {
+  height: 2.4em;
+  width: 2.75em;
+  left: 0.85em;
+  bottom: 0.4em;
+  background-color: #ddd;
+  transform: rotate(15deg) skewX(15deg); }
+
+.switch-right {
+  right: 0.5em;
+  bottom: 0;
+  background-color: #bd5757;
+  color: #fff; }
+
+.switch-left::before,
+.switch-right::before {
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  position: absolute;
+  width: 0.4em;
+  height: 2.45em;
+  bottom: -0.45em;
+  background-color: #ccc;
+  transform: skewY(-65deg); }
 
-input:checked + .slider {
-  background-color: #2196F3; }
+.switch-left::before {
+  left: -0.4em; }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3; }
+.switch-right::before {
+  right: -0.375em;
+  background-color: transparent;
+  transform: skewY(65deg); }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px); }
+input:checked + .switch-left {
+  background-color: #0084d0;
+  color: #fff;
+  bottom: 0px;
+  left: 0.5em;
+  height: 2.5em;
+  width: 3em;
+  transform: rotate(0deg) skewX(0deg); }
+
+input:checked + .switch-left::before {
+  background-color: transparent;
+  width: 3.0833em; }
+
+input:checked + .switch-left + .switch-right {
+  background-color: #ddd;
+  color: #888;
+  bottom: 0.4em;
+  right: 0.8em;
+  height: 2.4em;
+  width: 2.75em;
+  transform: rotate(-15deg) skewX(-15deg); }
+
+input:checked + .switch-left + .switch-right::before {
+  background-color: #ccc; }
 
 /* SEARCH-BAR */
 #search-input {
@@ -11298,12 +11374,13 @@ input:checked + .slider:before {
 .weather-card-container {
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(30px);
   border-radius: 50px;
   font-size: 1rem;
   color: #fff; }
 
 .table {
+  table-layout: fixed;
   color: #fff; }
 
 .table td,
@@ -11314,6 +11391,35 @@ input:checked + .slider:before {
 .weather-card-container hr {
   margin: 3px 0 3px;
   background-color: white; }
+
+.icon-holder {
+  position: relative; }
+
+.headings {
+  position: absolute;
+  font-size: 0.5rem; }
+
+.north,
+.south {
+  right: 50%;
+  transform: translate(50%, -50%); }
+
+.west,
+.east {
+  top: 50%;
+  transform: translateY(-50%); }
+
+.north {
+  top: 0; }
+
+.south {
+  bottom: -30%; }
+
+.west {
+  left: 10%; }
+
+.east {
+  right: 10%; }
 
 /* LOADING-EFFECT */
 .lds-ripple {
@@ -11382,5 +11488,15 @@ input:checked + .slider:before {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px; } }
+    font-size: 16px; }
+  #main-container {
+    padding-top: 10vh; }
+  .controls {
+    padding-top: 2vh; }
+  .main-title {
+    width: 16rem; }
+  .west {
+    left: 20%; }
+  .east {
+    right: 20%; } }
 
