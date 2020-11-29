@@ -118,29 +118,27 @@ const createWeatherCard = (data) => {
 
   const row = document.getElementById('main-container');
   row.innerHTML = '';
-  const col = createEl('div', 'col-12 col-md-6 col-lg-4');
-  const weatherCard = createEl('div', 'weather-card');
-  const wcTop = createEl('div', 'top');
-
-  const wrapper = createEl('div', 'wrapper');
-
-  const heading = createEl('h1', 'heading');
+  const weatherCardContainer = createEl('div', 'card weather-card-container text-center col-10 col-md-6 col-lg-4');
+  const weatherCard = createEl('div', 'card-body');
+  const heading = createEl('h1', 'card-title');
   heading.innerText = `${data.weather.description}`;
 
-  const location = createEl('h3', 'location');
+  const location = createEl('h3', 'card-subtitle mb-2 text-muted');
   location.innerText = `${data.cityName}, ${data.countryName}`;
 
+  const mainIconContainer = createEl('h1', 'card-title');
   const mainIcon = createEl('i', `wi wi-owm-${data.weather.id}`);
+  mainIconContainer.append(mainIcon);
 
-  const temp = createEl('p', 'temp');
+  const temp = createEl('h1', 'temp');
   const tempValue = createEl('span', 'temp-value');
   tempValue.innerText = `${data.temperatures.temp}`;
   const tempDegree = createEl('span', 'deg');
   tempDegree.innerText = '°';
 
   temp.append(tempValue, tempDegree, tempType);
-
-  const tableTemp = createEl('table', 'table-temp');
+  const tableTempContainer = createEl('div', 'table-responsive');
+  const tableTemp = createEl('table', 'table table-borderless table-fixed table-temp');
   const tableTempHeader = createEl('tr');
   const feelsLikeH = createEl('th');
   feelsLikeH.innerText = 'Feels Like';
@@ -160,8 +158,47 @@ const createWeatherCard = (data) => {
   tableTempInfo.append(feelsLike, maxTemp, minTemp);
 
   tableTemp.append(tableTempHeader, tableTempInfo);
+  tableTempContainer.append(tableTemp);
 
-  const tableHumidity = createEl('table', 'table-humidity');
+  const tableWindContainer = createEl('div', 'table-responsive');
+  const tableWind = createEl('table', 'table table-borderless table-fixed table-wind');
+
+  const tableWindHeader = createEl('tr');
+  const windFromH = createEl('th');
+  windFromH.innerText = 'From';
+  const windDirectionH = createEl('th');
+  windDirectionH.innerText = 'Direction';
+  const windSpeedH = createEl('th');
+  windSpeedH.innerText = 'Speed';
+  tableWindHeader.append(windFromH, windDirectionH, windSpeedH);
+
+  const tableWindInfo = createEl('tr');
+  const windFrom = createEl('td');
+  windFrom.innerText = `${data.wind.directionText}`;
+
+  const windDirection = createEl('td', 'icon-holder');
+  const headingN = createEl('p', 'headings north');
+  const headingS = createEl('p', 'headings south');
+  const headingW = createEl('p', 'headings west');
+  const headingE = createEl('p', 'headings east');
+  headingN.innerText = 'N';
+  headingS.innerText = 'S';
+  headingW.innerText = 'W';
+  headingE.innerText = 'E';
+  const iconContainer = createEl('h1');
+  const headingCompassIcon = createEl('i', `wi wi-wind from-${data.wind.deg}-deg`);
+  iconContainer.append(headingCompassIcon);
+  windDirection.append(headingN, headingS, headingW, headingE, iconContainer);
+
+  const windSpeed = createEl('td');
+  windSpeed.innerText = `${data.wind.speedText}`;
+  tableWindInfo.append(windFrom, windDirection, windSpeed);
+
+  tableWind.append(tableWindHeader, tableWindInfo);
+  tableWindContainer.append(tableWind);
+
+  const tableHumidityContainer = createEl('div', 'table-responsive');
+  const tableHumidity = createEl('table', 'table table-borderless table-fixed table-humidity');
 
   const tableHumHeader = createEl('tr');
   const humidityH = createEl('th');
@@ -178,48 +215,58 @@ const createWeatherCard = (data) => {
   tableHumInfo.append(humidity, pressure);
 
   tableHumidity.append(tableHumHeader, tableHumInfo);
+  tableHumidityContainer.append(tableHumidity);
 
-  const windTitle = createEl('h4');
-  windTitle.innerText = 'Wind';
-  const windIcon = createEl('i', `wi wi-wind from-${data.wind.deg}-deg`);
-
-  const tableWind = createEl('table', 'table-wind');
-
-  const tableWindHeader = createEl('tr');
-  const windDirectionH = createEl('th');
-  windDirectionH.innerText = 'From';
-  const windSpeedH = createEl('th');
-  windSpeedH.innerText = 'Speed';
-  tableWindHeader.append(windDirectionH, windSpeedH);
-
-  const tableWindInfo = createEl('tr');
-  const windDirection = createEl('td');
-  windDirection.innerText = `${data.wind.directionText}`;
-  const windSpeed = createEl('td');
-  windSpeed.innerText = `${data.wind.speedText}`;
-  tableWindInfo.append(windDirection, windSpeed);
-
-  tableWind.append(tableWindHeader, tableWindInfo);
-
-  wrapper.append(
+  weatherCard.append(
     heading,
     location,
-    mainIcon,
+    mainIconContainer,
     temp,
-    tableTemp,
+    tableTempContainer,
     hr,
-    tableHumidity,
+    tableWindContainer,
     hr2,
-    windTitle,
-    windIcon,
-    tableWind,
+    tableHumidityContainer,
   );
 
-  wcTop.appendChild(wrapper);
-  weatherCard.appendChild(wcTop);
-  col.appendChild(weatherCard);
-  col.classList.add('animate__animated', 'animate__fadeIn');
-  row.appendChild(col);
+  weatherCardContainer.appendChild(weatherCard);
+  weatherCardContainer.classList.add('animate__animated', 'animate__fadeIn');
+  row.appendChild(weatherCardContainer);
+};
+
+const displaySearchBar = () => {
+  const mainContainer = document.getElementById('main-container');
+  mainContainer.innerHTML = '';
+
+  const searchContainer = createEl('div', 'col-6 animate__animated animate__zoomIn');
+  searchContainer.setAttribute('id', 'search-container');
+
+  const searchForm = createEl('form');
+  searchForm.setAttribute('id', 'form');
+
+  const formGroup = createEl('div', 'form-group');
+
+  const inputGroup = createEl('div', 'input-group mb-3');
+
+  const searchInput = createEl('input', 'form-control form-control-lg');
+  searchInput.setAttribute('id', 'search-input');
+  searchInput.setAttribute('type', 'text');
+  searchInput.setAttribute('placeholder', 'E.g.: "City, CountryName"');
+
+  const inputGroupA = createEl('div', 'input-group-append');
+  const submitBtn = createEl('button', 'btn btn-outline-secondary btn-info');
+  submitBtn.setAttribute('type', 'submit');
+  submitBtn.innerText = 'Find!';
+  inputGroupA.append(submitBtn);
+
+  const errorMessage = createEl('div', 'invalid-feedback');
+  errorMessage.innerText = 'Please provide a valid city. The input should be "City Name, Country" or only "City Name".';
+
+  inputGroup.append(searchInput, inputGroupA, errorMessage);
+  formGroup.append(inputGroup);
+  searchForm.append(formGroup);
+  searchContainer.append(searchForm);
+  mainContainer.append(searchContainer);
 };
 
 export {
