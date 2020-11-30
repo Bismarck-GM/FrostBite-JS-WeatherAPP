@@ -11252,7 +11252,7 @@ body {
   z-index: 99999; }
 
 .main-title {
-  width: 15rem; }
+  min-width: 15rem; }
 
 .search-icon {
   max-width: 2rem;
@@ -11272,7 +11272,7 @@ body {
   will change the size of the switch.
   See .rocker-small below as example.
   */
-  font-size: 0.6em;
+  font-size: 0.5em;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -11458,13 +11458,13 @@ input:checked + .switch-left + .switch-right::before {
   max-height: 35vh; }
 
 .city-BNG-back-container {
-  animation: pop-up 4s ease-in forwards;
+  animation: pop-up 5s ease-in forwards;
   max-height: 40vh;
   z-index: 99;
   filter: blur(2px); }
 
 .city-BNG-front-container {
-  animation: pop-up 2s ease-in forwards;
+  animation: pop-up 3s ease-in forwards;
   max-height: 25vh;
   z-index: 100; }
 

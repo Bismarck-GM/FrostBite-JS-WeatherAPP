@@ -148,7 +148,7 @@ const createWeatherCard = (data) => {
 
   const tableHumInfo = createEl('tr');
   const humidity = createEl('td');
-  humidity.innerText = `% ${data.humidity}`;
+  humidity.innerText = `${data.humidity}%`;
   const pressure = createEl('td');
   pressure.innerText = `${data.pressure} hPa`;
   tableHumInfo.append(humidity, pressure);
@@ -176,40 +176,40 @@ const createWeatherCard = (data) => {
   tableTempContainer.classList.add('animate__animated', 'animate__fadeInLeft');
 };
 
-const displaySearchBar = () => {
-  const mainContainer = document.getElementById('main-container');
-  mainContainer.innerHTML = '';
+// const displaySearchBar = () => {
+//   const mainContainer = document.getElementById('main-container');
+//   mainContainer.innerHTML = '';
 
-  const searchContainer = createEl('div', 'col-6 animate__animated animate__zoomIn');
-  searchContainer.setAttribute('id', 'search-container');
+//   const searchContainer = createEl('div', 'col-6 animate__animated animate__zoomIn');
+//   searchContainer.setAttribute('id', 'search-container');
 
-  const searchForm = createEl('form');
-  searchForm.setAttribute('id', 'form');
+//   const searchForm = createEl('form');
+//   searchForm.setAttribute('id', 'form');
 
-  const formGroup = createEl('div', 'form-group');
+//   const formGroup = createEl('div', 'form-group');
 
-  const inputGroup = createEl('div', 'input-group mb-3');
+//   const inputGroup = createEl('div', 'input-group mb-3');
 
-  const searchInput = createEl('input', 'form-control form-control-lg');
-  searchInput.setAttribute('id', 'search-input');
-  searchInput.setAttribute('type', 'text');
-  searchInput.setAttribute('placeholder', 'E.g.: "City, CountryName"');
+//   const searchInput = createEl('input', 'form-control form-control-lg');
+//   searchInput.setAttribute('id', 'search-input');
+//   searchInput.setAttribute('type', 'text');
+//   searchInput.setAttribute('placeholder', 'E.g.: "City, CountryName"');
 
-  const inputGroupA = createEl('div', 'input-group-append');
-  const submitBtn = createEl('button', 'btn btn-outline-secondary btn-info');
-  submitBtn.setAttribute('type', 'submit');
-  submitBtn.innerText = 'Find!';
-  inputGroupA.append(submitBtn);
+//   const inputGroupA = createEl('div', 'input-group-append');
+//   const submitBtn = createEl('button', 'btn btn-outline-secondary btn-info');
+//   submitBtn.setAttribute('type', 'submit');
+//   submitBtn.innerText = 'Find!';
+//   inputGroupA.append(submitBtn);
 
-  const errorMessage = createEl('div', 'invalid-feedback');
-  errorMessage.innerText = 'Please provide a valid city. The input should be "City Name, Country" or only "City Name".';
+//   const errorMessage = createEl('div', 'invalid-feedback');
+//   errorMessage.innerText = 'Please provide a valid city. The input should be "City Name, Country" or only "City Name".';
 
-  inputGroup.append(searchInput, inputGroupA, errorMessage);
-  formGroup.append(inputGroup);
-  searchForm.append(formGroup);
-  searchContainer.append(searchForm);
-  mainContainer.append(searchContainer);
-};
+//   inputGroup.append(searchInput, inputGroupA, errorMessage);
+//   formGroup.append(inputGroup);
+//   searchForm.append(formGroup);
+//   searchContainer.append(searchForm);
+//   mainContainer.append(searchContainer);
+// };
 
 const checkSearchBar = () => {
   const searchBar = document.getElementById('search-container');
@@ -218,6 +218,8 @@ const checkSearchBar = () => {
     toggleSearchBar();
     searchBar.classList.remove('d-none');
     weatherCardContainer.remove();
+  } else {
+    document.getElementById('search-input').focus();
   }
 };
 
