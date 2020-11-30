@@ -1,4 +1,4 @@
-import { normalizeApiData, processInputStringToApiCall } from './functions';
+import { normalizeApiData, processInputStringToApiCall, storeInLocal } from './functions';
 import {
   createWeatherCard,
   toggleSearchBar,
@@ -6,16 +6,11 @@ import {
   displayErrorSearchBar,
 } from './dom';
 
-const digestAPIDATA = async (APIDATA) => {
-  try {
-    const digestedData = normalizeApiData(APIDATA);
-    toggleLoadingAnimation();
-    createWeatherCard(digestedData);
-  } catch (err) {
-    toggleSearchBar();
-    displayErrorSearchBar();
-  }
-  return null;
+const digestAPIDATA = (APIDATA) => {
+  const digestedData = normalizeApiData(APIDATA);
+  toggleLoadingAnimation();
+  storeInLocal(digestedData);
+  createWeatherCard();
 };
 
 const getWeather = async (inputString) => {
@@ -28,7 +23,6 @@ const getWeather = async (inputString) => {
       displayErrorSearchBar();
     } else {
       const APIDATA = await response.json();
-      console.log(APIDATA);
       digestAPIDATA(APIDATA);
     }
   } catch (err) {

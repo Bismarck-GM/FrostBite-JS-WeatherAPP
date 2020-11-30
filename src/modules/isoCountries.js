@@ -253,9 +253,8 @@ const getCountryName = (countryCode) => {
   return countryCode;
 };
 
-const getCountryCode = (countryName) => {
-  console.log(countryName);
-  return Object.keys(isoCountries).find(key => isoCountries[key] === countryName);
-};
+const getCountryCode = (countryName) => Object
+  .keys(isoCountries)
+  .find(key => isoCountries[key] === countryName);
 
 export { getCountryName, getCountryCode };

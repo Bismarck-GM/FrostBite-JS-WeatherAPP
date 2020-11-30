@@ -47,7 +47,6 @@ const processInputStringToApiCall = (inputString) => {
   if (inputString.indexOf(',') === -1) {
     APICALL = `https://api.openweathermap.org/data/2.5/weather?q=${inputString}&appid=${APIKEY}`;
   }
-  console.log(APICALL);
   return APICALL;
 };
 
@@ -72,21 +71,23 @@ const toTextualDescription = (degree) => {
   return sectors[which];
 };
 
-const switchStatus = () => document.getElementById('switch-measurement').checked;
-
 const normalizeTempMetric = (temperature) => (temperature / 10).toFixed(1);
 
 const normalizeTempFahrenheit = (temperatures) => (
   (normalizeTempMetric(temperatures) * (9 / 5) + 32)).toFixed(1);
 
-const digestTemperatures = (temperatureObject) => {
+const digestTemperaturesC = (temperatureObject) => {
   const response = {};
   Object.keys(temperatureObject).forEach((key) => {
-    if (switchStatus()) {
-      response[key] = normalizeTempMetric(temperatureObject[key]);
-    } else {
-      response[key] = normalizeTempFahrenheit(temperatureObject[key]);
-    }
+    response[key] = normalizeTempMetric(temperatureObject[key]);
+  });
+  return response;
+};
+
+const digestTemperaturesF = (temperatureObject) => {
+  const response = {};
+  Object.keys(temperatureObject).forEach((key) => {
+    response[key] = normalizeTempFahrenheit(temperatureObject[key]);
   });
   return response;
 };
@@ -112,13 +113,17 @@ const destructData = (APIDATA) => {
 
 const normalizeApiData = (APIDATA) => {
   const data = destructData(APIDATA);
-  data.temperatures = digestTemperatures(data.temperatures);
+  data.temperaturesC = digestTemperaturesC(data.temperatures);
+  data.temperaturesF = digestTemperaturesF(data.temperatures);
   data.countryName = getCountryName(data.countryCode);
   data.wind.speedText = windBeaufortToKmh(data.wind.speed);
   data.wind.directionText = toTextualDescription(data.wind.deg);
   data.weather.description = capitalizeFirstLetter(data.weather.description);
-  console.log(data);
   return data;
 };
 
-export { normalizeApiData, processInputStringToApiCall };
+const storeInLocal = (weatherInfo) => {
+  localStorage.setItem('weather', JSON.stringify(weatherInfo));
+};
+
+export { normalizeApiData, processInputStringToApiCall, storeInLocal };

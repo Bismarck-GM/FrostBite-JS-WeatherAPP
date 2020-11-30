@@ -1,3 +1,5 @@
+const fetchFromLocal = () => JSON.parse(localStorage.getItem('weather'));
+
 const toggleSearchBar = () => {
   const searchBar = document.getElementById('search-container');
   if (searchBar.classList.contains('animate__zoomIn')) {
@@ -44,12 +46,34 @@ function getTempSign() {
   return sign;
 }
 
-const createWeatherCard = (data) => {
+const appendTemps = () => {
+  const data = fetchFromLocal();
+  const tempType = document.querySelector('.temp-type');
+  const tempValue = document.querySelector('.temp-value');
+  const feelsLike = document.getElementById('feels-like');
+  const maxTemp = document.getElementById('max-temp');
+  const minTemp = document.getElementById('min-temp');
+  if (switchStatus()) {
+    tempType.innerText = getTempSign();
+    tempValue.innerText = `${data.temperaturesC.temp}`;
+    feelsLike.innerText = `${data.temperaturesC.feels_like} °${getTempSign()}`;
+    maxTemp.innerText = `${data.temperaturesC.temp_max} °${getTempSign()}`;
+    minTemp.innerText = `${data.temperaturesC.temp_min} °${getTempSign()}`;
+  } else {
+    tempType.innerText = getTempSign();
+    tempValue.innerText = `${data.temperaturesF.temp}`;
+    feelsLike.innerText = `${data.temperaturesF.feels_like} °${getTempSign()}`;
+    maxTemp.innerText = `${data.temperaturesF.temp_max} °${getTempSign()}`;
+    minTemp.innerText = `${data.temperaturesF.temp_min} °${getTempSign()}`;
+  }
+};
+
+const createWeatherCard = () => {
+  const data = fetchFromLocal();
   const sup = document.createElement('sup');
   sup.innerText = '°';
 
   const tempType = createEl('span', 'temp-type');
-  tempType.innerText = getTempSign();
 
   const hr = document.createElement('hr');
   const hr2 = document.createElement('hr');
@@ -71,7 +95,6 @@ const createWeatherCard = (data) => {
 
   const temp = createEl('h1', 'temp');
   const tempValue = createEl('span', 'temp-value');
-  tempValue.innerText = `${data.temperatures.temp}`;
   const tempDegree = createEl('span', 'deg');
   tempDegree.innerText = '°';
 
@@ -89,11 +112,11 @@ const createWeatherCard = (data) => {
 
   const tableTempInfo = createEl('tr');
   const feelsLike = createEl('td');
-  feelsLike.innerText = `${data.temperatures.feels_like} °${getTempSign()}`;
+  feelsLike.setAttribute('id', 'feels-like');
   const maxTemp = createEl('td');
-  maxTemp.innerText = `${data.temperatures.temp_max} °${getTempSign()}`;
+  maxTemp.setAttribute('id', 'max-temp');
   const minTemp = createEl('td');
-  minTemp.innerText = `${data.temperatures.temp_min} °${getTempSign()}`;
+  minTemp.setAttribute('id', 'min-temp');
   tableTempInfo.append(feelsLike, maxTemp, minTemp);
 
   tableTemp.append(tableTempHeader, tableTempInfo);
@@ -170,12 +193,14 @@ const createWeatherCard = (data) => {
 
   weatherCardContainer.appendChild(weatherCard);
   row.appendChild(weatherCardContainer);
+  appendTemps(data);
   weatherCardContainer.classList.add('animate__animated', 'animate__fadeIn');
   tableHumidityContainer.classList.add('animate__animated', 'animate__fadeInUp');
   tableWindContainer.classList.add('animate__animated', 'animate__fadeInRight');
   tableTempContainer.classList.add('animate__animated', 'animate__fadeInLeft');
 };
 
+// Create a new SearchBar - Deprecated //
 // const displaySearchBar = () => {
 //   const mainContainer = document.getElementById('main-container');
 //   mainContainer.innerHTML = '';
@@ -202,7 +227,7 @@ const createWeatherCard = (data) => {
 //   inputGroupA.append(submitBtn);
 
 //   const errorMessage = createEl('div', 'invalid-feedback');
-//   errorMessage.innerText = 'Please provide a valid city. The input should be "City Name, Country" or only "City Name".';
+//   errorMessage.innerText = 'Please provide a valid c.
 
 //   inputGroup.append(searchInput, inputGroupA, errorMessage);
 //   formGroup.append(inputGroup);
@@ -223,10 +248,18 @@ const checkSearchBar = () => {
   }
 };
 
+const toggleTemps = () => {
+  const weatherCard = document.querySelector('.card-body');
+  if (weatherCard != null) {
+    appendTemps();
+  }
+};
+
 export {
   createWeatherCard,
   toggleSearchBar,
   toggleLoadingAnimation,
   displayErrorSearchBar,
   checkSearchBar,
+  toggleTemps,
 };

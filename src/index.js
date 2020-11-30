@@ -1,7 +1,12 @@
 import './main.scss';
 import getWeather from './modules/api';
 import updateBackgroundsBasedOnNow from './modules/backgroundGradient';
-import { toggleSearchBar, toggleLoadingAnimation, checkSearchBar } from './modules/dom';
+import {
+  toggleSearchBar,
+  toggleLoadingAnimation,
+  checkSearchBar,
+  toggleTemps,
+} from './modules/dom';
 
 const form = document.getElementById('form');
 form.addEventListener('submit', (event) => {
@@ -14,11 +19,12 @@ form.addEventListener('submit', (event) => {
 });
 
 const searchIcon = document.getElementById('search-icon');
-searchIcon.addEventListener('click', (e) => {
-  // console.log(e);
+searchIcon.addEventListener('click', () => {
   checkSearchBar();
 });
 
 const switcher = document.getElementById('switch-measurement');
-
+switcher.addEventListener('click', () => {
+  toggleTemps();
+});
 updateBackgroundsBasedOnNow();

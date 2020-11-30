@@ -5,20 +5,25 @@ import getHours from 'date-fns/getHours';
 
 const momentOfDay = (hour) => {
   let momentOfDay = '';
-  if (hour >= 22 && hour <= 5) {
-    momentOfDay = 'night';
-  } else if (hour >= 10 && hour <= 17) {
-    momentOfDay = 'day';
+  if (hour >= 20 || hour <= 5) {
+    momentOfDay = 'Night';
+  } else if (hour >= 8 || hour <= 17) {
+    momentOfDay = 'Day';
   } else {
-    momentOfDay = 'ds';
+    momentOfDay = 'DS';
   }
   return momentOfDay;
 };
 
-console.log(new Date());
 let hour = getHours(new Date());
 let timeOfDay = momentOfDay(hour);
 let inx = -1;
+let toD = '';
+
+const updateToD = () => {
+  timeOfDay = momentOfDay(hour);
+  return timeOfDay;
+};
 
 const updateTime = () => {
   hour = getHours(new Date());
@@ -80,15 +85,26 @@ const setCSSGradientByIndex = (nInx) => {
   hour = getHours(new Date());
 };
 
+const setBackgroundImages = (nToD) => {
+  if (nToD !== toD) {
+    toD = nToD;
+    const back = document.getElementById('city-BNG-back');
+    const front = document.getElementById('city-BNG-front');
+    back.src = `./common/images/City-Back-${toD}.png`;
+    front.src = `./common/images/City-Front-${toD}.png`;
+  }
+};
+
 const updateBackgroundsBasedOnNow = () => {
   setCSSGradientByIndex(updateTime());
+  setBackgroundImages(updateToD());
 };
 
 // First run to load background.
 
 const h = updateTime();
 setCSSGradientByIndex(h);
-
+setBackgroundImages(timeOfDay);
 setInterval(() => { updateBackgroundsBasedOnNow(); }, 60 * 1000);
 
 export default updateBackgroundsBasedOnNow;
