@@ -5,12 +5,13 @@
     <meta charset="utf-8">
     <meta name="description" content="Simple weather APP using API">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./common/images/frostbite.ico" type="image/x-icon" />
     <link rel="stylesheet" href="common/weather-icons-wind.css">
     <link rel="stylesheet" href="common/weather-icons.css">
     <title>FrostBite - Weather App</title>
-  <link href="main.css?79fa669d8f55f1c15abc" rel="stylesheet"></head>
+  <link href="main.css?1c4bc316e423b3e241c4" rel="stylesheet"></head>
   <body id="main-body">
-    <div class="controls position-absolute d-flex w-100 justify-content-around align-items-end">
+    <div class="controls position-absolute d-flex w-100 justify-content-between justify-content-lg-around align-items-end">
       <div class="input-container w-25">
         <label class="rocker">
           <input type="checkbox" id="switch-measurement" checked class="d-flex align-items-end">
@@ -37,7 +38,7 @@
             <div class="input-group mb-3">
               <input id="search-input" class="form-control form-control-lg" type="text" placeholder="E.g.: 'City, CountryName'">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary btn-info" type="submit">Find!</button>
+                <button class="btn btn-info" type="submit">Find!</button>
               </div>
               <div class="invalid-feedback">
                 Please provide a valid city. The input should be "City Name, Country" or only "City Name".
@@ -117,5 +118,5 @@
         <img src="./common/images/City-Front-Night.png" alt="Illustration-city-front" id="city-BNG-front">
       </div>
     </div>
-  <script src="main.js?79fa669d8f55f1c15abc"></script></body>
+  <script src="main.js?1c4bc316e423b3e241c4"></script></body>
 </html>
