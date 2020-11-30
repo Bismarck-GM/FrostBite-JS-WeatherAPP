@@ -11280,7 +11280,7 @@ body {
   width: 7em;
   height: 4em;
   overflow: hidden;
-  border-bottom: 0.5em solid #B78544; }
+  border-bottom: 0.5em solid #b78544; }
 
 .rocker::before {
   content: "";
@@ -11290,7 +11290,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: #999;
-  border: 0.5em solid #B78544;
+  border: 0.5em solid #b78544;
   border-bottom: 0; }
 
 .rocker input {
@@ -11344,7 +11344,7 @@ body {
 input:checked + .switch-left {
   background-color: #0084d0;
   color: #fff;
-  bottom: 0px;
+  bottom: 0;
   left: 0.5em;
   height: 2.5em;
   width: 3em;
@@ -11440,7 +11440,7 @@ input:checked + .switch-left + .switch-right::before {
 .lds-ripple div:nth-child(2) {
   animation-delay: -0.5s; }
 
-/* FOOTER - IMAGE - ANIMATIONS*/
+/* FOOTER - IMAGE - ANIMATIONS */
 #footer-container {
   position: absolute;
   bottom: 0;
@@ -11476,8 +11476,8 @@ input:checked + .switch-left + .switch-right::before {
     height: 0;
     opacity: 1; }
   100% {
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 72px;
     height: 72px;
     opacity: 0; } }

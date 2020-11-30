@@ -43,6 +43,7 @@ body {
 .rocker {
   display: inline-block;
   position: relative;
+
   /*
   SIZE OF SWITCH
   ==============
@@ -59,7 +60,7 @@ body {
   width: 7em;
   height: 4em;
   overflow: hidden;
-  border-bottom: 0.5em solid #B78544;
+  border-bottom: 0.5em solid #b78544;
 }
 
 .rocker::before {
@@ -70,7 +71,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: #999;
-  border: 0.5em solid #B78544;
+  border: 0.5em solid #b78544;
   border-bottom: 0;
 }
 
@@ -132,7 +133,7 @@ body {
 input:checked + .switch-left {
   background-color: #0084d0;
   color: #fff;
-  bottom: 0px;
+  bottom: 0;
   left: 0.5em;
   height: 2.5em;
   width: 3em;
@@ -168,11 +169,12 @@ input:checked + .switch-left + .switch-right::before {
 
 .weather-card-container {
   z-index: 9999;
-  background-color: rgba(255, 255, 255, .15);  
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(30px);
   border-radius: 50px;
   font-size: 1rem;
   color: #fff;
+
   h3 {
     color: rgb(121, 176, 228);
   }
@@ -188,8 +190,6 @@ input:checked + .switch-left + .switch-right::before {
   border: none;
   padding: 0.5rem;
 }
-
-
 
 .weather-card-container hr {
   margin: 3px 0 3px;
@@ -208,7 +208,7 @@ input:checked + .switch-left + .switch-right::before {
 .north,
 .south {
   right: 50%;
-  transform: translate(50%,-50%);
+  transform: translate(50%, -50%);
 }
 
 .west,
@@ -220,12 +220,15 @@ input:checked + .switch-left + .switch-right::before {
 .north {
   top: 0;
 }
+
 .south {
   bottom: -30%;
 }
+
 .west {
   left: 10%;
 }
+
 .east {
   right: 10%;
 }
@@ -238,6 +241,7 @@ input:checked + .switch-left + .switch-right::before {
   width: 100px;
   height: 100px;
 }
+
 .lds-ripple div {
   position: absolute;
   border: 4px solid #fff;
@@ -250,7 +254,7 @@ input:checked + .switch-left + .switch-right::before {
   animation-delay: -0.5s;
 }
 
-/* FOOTER - IMAGE - ANIMATIONS*/
+/* FOOTER - IMAGE - ANIMATIONS */
 
 #footer-container {
   position: absolute;
@@ -291,9 +295,10 @@ input:checked + .switch-left + .switch-right::before {
     height: 0;
     opacity: 1;
   }
+
   100% {
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 72px;
     height: 72px;
     opacity: 0;
@@ -302,34 +307,39 @@ input:checked + .switch-left + .switch-right::before {
 
 @keyframes pop-up {
   from {
-    bottom:-400px;
+    bottom: -400px;
   }
+
   to {
-    
     bottom: 0;
   }
 }
-
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
+
   #main-container {
     padding-top: 10vh;
   }
+
   .controls {
     padding-top: 2vh;
   }
+
   .main-title {
     width: 16rem;
   }
+
   .rocker {
     font-size: 0.8em;
   }
+
   .west {
     left: 20%;
   }
+
   .east {
     right: 20%;
   }
