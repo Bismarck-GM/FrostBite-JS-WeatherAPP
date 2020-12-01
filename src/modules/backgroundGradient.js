@@ -7,7 +7,7 @@ const momentOfDay = (hour) => {
   let momentOfDay = '';
   if (hour >= 20 || hour <= 5) {
     momentOfDay = 'Night';
-  } else if (hour >= 8 || hour <= 17) {
+  } else if ((hour >= 8 && hour < 18) || hour <= 17) {
     momentOfDay = 'Day';
   } else {
     momentOfDay = 'DS';
