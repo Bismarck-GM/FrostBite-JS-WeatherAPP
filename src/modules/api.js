@@ -26,6 +26,7 @@ const getWeather = async (inputString) => {
       digestAPIDATA(APIDATA);
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
   }
   return null;
