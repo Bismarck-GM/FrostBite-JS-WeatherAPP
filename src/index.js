@@ -28,3 +28,4 @@ switcher.addEventListener('click', () => {
   toggleTemps();
 });
 updateBackgroundsBasedOnNow();
+document.getElementById('search-input').focus();

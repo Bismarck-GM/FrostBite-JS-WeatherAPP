@@ -10,7 +10,6 @@ const toggleSearchBar = () => {
     searchBar.classList.remove('animate__fadeOut');
     searchBar.style.setProperty('--animate-duration', '1s');
     searchBar.classList.add('animate__zoomIn');
-    searchBar.focus();
   }
 };
 
@@ -22,6 +21,7 @@ const toggleLoadingAnimation = () => {
 const displayErrorSearchBar = () => {
   const errorBox = document.querySelector('.invalid-feedback');
   errorBox.classList.add('d-block');
+  document.getElementById('search-input').focus();
 };
 
 function createEl(type, cl = '') {
@@ -243,6 +243,7 @@ const checkSearchBar = () => {
     toggleSearchBar();
     searchBar.classList.remove('d-none');
     weatherCardContainer.remove();
+    document.getElementById('search-input').focus();
   } else {
     document.getElementById('search-input').focus();
   }
