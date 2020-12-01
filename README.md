@@ -35,7 +35,7 @@
 
 ## Live Demo
 
-- You can click on this [link](https://bismarck-gm.github.io/FrostBite-JS-WeatherAPP/)
+- You can click on this [link](https://raw.githack.com/Bismarck-GM/weather-app/weatherAPP-V1.0/dist/index.html)
 
 ## Getting Started
 
