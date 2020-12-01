@@ -35,7 +35,7 @@
 
 ## Live Demo
 
-- You can click on this [link](https://bismarck-gm.github.io/ToDoList-js/)
+- You can click on this [link](https://bismarck-gm.github.io/FrostBite-JS-WeatherAPP/)
 
 ## Getting Started
 
@@ -53,7 +53,7 @@ $ cd <directory>
 - Clone the repo typing:
 
 ```
-$ git clone git@github.com:Bismarck-GM/ToDoList-js.git
+$ git clone git@github.com:Bismarck-GM/FrostBite-JS-WeatherAPP.git
 ```
 
 - Install dependencies:
@@ -70,7 +70,7 @@ Start the server:
 $ npm run server
 ```
 
-Open `http://localhost:3000/` in your browser.
+Open `http://localhost:8080/` in your browser.
 
 ## Author
 
