@@ -71,7 +71,7 @@ const toTextualDescription = (degree) => {
   return sectors[which];
 };
 
-const normalizeTempMetric = (temperature) => (temperature / 10).toFixed(1);
+const normalizeTempMetric = (temperature) => (temperature - 273.15).toFixed(1);
 
 const normalizeTempFahrenheit = (temperatures) => (
   (normalizeTempMetric(temperatures) * (9 / 5) + 32)).toFixed(1);

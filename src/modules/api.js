@@ -23,6 +23,7 @@ const getWeather = async (inputString) => {
       displayErrorSearchBar();
     } else {
       const APIDATA = await response.json();
+      console.log(APIDATA);
       digestAPIDATA(APIDATA);
     }
   } catch (err) {
