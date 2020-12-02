@@ -3,7 +3,7 @@ import {
   createWeatherCard,
   toggleSearchBar,
   toggleLoadingAnimation,
-  displayErrorSearchBar,
+  toggleErrorSearchBar,
 } from './dom';
 
 const digestAPIDATA = (APIDATA) => {
@@ -15,20 +15,26 @@ const digestAPIDATA = (APIDATA) => {
 
 const getWeather = async (inputString) => {
   const APICALL = processInputStringToApiCall(inputString);
-  try {
-    const response = await fetch(APICALL);
-    if (response.status !== 200) {
-      toggleLoadingAnimation();
-      toggleSearchBar();
-      displayErrorSearchBar();
-    } else {
-      const APIDATA = await response.json();
-      console.log(APIDATA);
-      digestAPIDATA(APIDATA);
+  if (APICALL.length === 0) {
+    toggleLoadingAnimation();
+    toggleSearchBar();
+    toggleErrorSearchBar(true);
+  } else {
+    try {
+      const response = await fetch(APICALL);
+      if (response.status !== 200) {
+        toggleLoadingAnimation();
+        toggleSearchBar();
+        toggleErrorSearchBar(true);
+      } else {
+        const APIDATA = await response.json();
+        toggleErrorSearchBar(false);
+        digestAPIDATA(APIDATA);
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
     }
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
   }
   return null;
 };

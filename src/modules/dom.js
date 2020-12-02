@@ -18,10 +18,13 @@ const toggleLoadingAnimation = () => {
   loadingAn.classList.toggle('d-none');
 };
 
-const displayErrorSearchBar = () => {
+const toggleErrorSearchBar = (bool) => {
   const errorBox = document.querySelector('.invalid-feedback');
-  errorBox.classList.add('d-block');
-  document.getElementById('search-input').focus();
+  if (bool) {
+    errorBox.classList.add('d-block');
+  } else {
+    errorBox.classList.remove('d-block');
+  }
 };
 
 function createEl(type, cl = '') {
@@ -260,7 +263,7 @@ export {
   createWeatherCard,
   toggleSearchBar,
   toggleLoadingAnimation,
-  displayErrorSearchBar,
+  toggleErrorSearchBar,
   checkSearchBar,
   toggleTemps,
 };

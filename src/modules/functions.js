@@ -39,12 +39,15 @@ const capitalizeFirstLetterAllWords = (string) => {
 
 const processInputStringToApiCall = (inputString) => {
   let APICALL = '';
+  const regex = /[^a-z],+\s/g;
+  if (inputString.trim().length === 0 || regex.test(inputString)) {
+    return APICALL;
+  }
   if (inputString.indexOf(',') !== -1) {
     const strArr = splitCityCountryString(inputString);
     strArr[1] = getCountryCode(capitalizeFirstLetterAllWords(strArr[1]));
     APICALL = `https://api.openweathermap.org/data/2.5/weather?q=${strArr[0]},${strArr[1]}&appid=${APIKEY}`;
-  }
-  if (inputString.indexOf(',') === -1) {
+  } else if (inputString.indexOf(',') === -1) {
     APICALL = `https://api.openweathermap.org/data/2.5/weather?q=${inputString}&appid=${APIKEY}`;
   }
   return APICALL;
